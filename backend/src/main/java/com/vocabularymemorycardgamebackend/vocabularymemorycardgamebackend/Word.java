@@ -10,13 +10,18 @@ public @Data class Word {
         Word = word;
     }
 
-    //    private String English;
-//    private String Spanish;
-//
-//    public Word(
-//            @JsonProperty("english") String english,
-//            @JsonProperty("spanish") String spanish) {
-//        English = english;
-//        Spanish = spanish;
-//    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Word)) {
+            return false;
+        }
+
+        var parsedOther = (Word) other;
+
+        return parsedOther.getWord().equals(this.getWord());
+    }
 }

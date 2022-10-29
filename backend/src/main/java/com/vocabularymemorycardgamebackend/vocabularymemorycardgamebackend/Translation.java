@@ -14,4 +14,20 @@ public @Data class Translation {
         English = english;
         Spanish = spanish;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Translation)) {
+            return false;
+        }
+
+        var parsedOther = (Translation) other;
+
+        return parsedOther.getEnglish().equals(this.getEnglish()) &&
+                parsedOther.getSpanish().equals(this.getSpanish());
+    }
 }

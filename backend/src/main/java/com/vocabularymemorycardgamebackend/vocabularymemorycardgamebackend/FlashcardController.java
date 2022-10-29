@@ -4,9 +4,7 @@ import com.vocabularymemorycardgamebackend.vocabularymemorycardgamebackend.utils
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +48,20 @@ public class FlashcardController {
             var randomSpanishWord = allWords.get(randomIndex).getSpanish();
 
             return new ResponseEntity(randomSpanishWord, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/submit")
+    public ResponseEntity submitTranslationAttempt(@RequestBody Translation submission) {
+        List<Translation> allWords = Collections.EMPTY_LIST;
+
+        try {
+            allWords = fileReader.ReadWords();
+            var isMatch= allWords.stream().anyMatch(x -> x.equals(submission));
+            return new ResponseEntity(isMatch ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
         }
         catch(Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
