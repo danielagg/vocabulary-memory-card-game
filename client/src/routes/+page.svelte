@@ -58,7 +58,12 @@
         }
     }
 
-  </script>
+</script>
+
+<svelte:head>
+    <title>Flashcards Game • danielagg.com</title>
+	<meta name="robots" content="noindex nofollow" />
+</svelte:head>
 
 <main class="min-h-screen w-full bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-400 flex justify-center lg:items-center">
     <div class="w-full lg:w-1/2 flex flex-col">
