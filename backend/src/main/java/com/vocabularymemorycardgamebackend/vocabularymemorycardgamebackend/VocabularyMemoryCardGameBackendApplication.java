@@ -36,8 +36,9 @@ public class VocabularyMemoryCardGameBackendApplication {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(List.of("http://localhost:8080/", "http://localhost:5173/")); // Arrays.asList("https://example.com")
-		configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PATCH","OPTIONS"));
+		configuration.setAllowedOrigins(List.of("http://localhost:8080/", "http://localhost:5173/"));
+		configuration.setAllowedMethods(List.of("GET","POST","DELETE","PATCH","OPTIONS"));
+		configuration.setAllowedHeaders(Arrays.asList("content-type"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
