@@ -8,6 +8,7 @@
     import Score from './score.component.svelte';
     import {increaseScore, resetScore} from './store'
 	import HowToPlay from './howToPlay.component.svelte';
+	import Copyright from './copyright.component.svelte';
 
     export let data: PageData;
 
@@ -102,7 +103,9 @@
 
         <div class="block lg:hidden w-full p-4 text-center">
             <HowToPlay />
-          </div>
+        </div>
+
+        <Copyright />
     </div>
 </main>
 
