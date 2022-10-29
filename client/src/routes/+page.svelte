@@ -7,6 +7,7 @@
     import  {SubmissionStatus} from './types'
     import Score from './score.component.svelte';
     import {increaseScore, resetScore} from './store'
+	import HowToPlay from './howToPlay.component.svelte';
 
     export let data: PageData;
 
@@ -60,7 +61,12 @@
 
 <main class="min-h-screen w-full bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-400 flex justify-center lg:items-center">
     <div class="w-full lg:w-1/2 flex flex-col">
-        <Score />
+        <div class="flex flex-col lg:flex-row justify-between">
+            <div class="hidden lg:block w-2/3">
+              <HowToPlay />
+            </div>
+            <Score />
+        </div>
 
         <div class="mt-8 lg:mt-12 mx-4 lg:mx-0 bg-gray-50 dark:bg-gray-700 rounded shadow p-12 flex flex-col items-center justify-center">
             <h1 class="text-5xl break-all lg:text-7xl font-bold my-12 dark:text-gray-50">{@html data.word}</h1>
@@ -71,7 +77,7 @@
             </div>
         </div>
 
-        <div class="mx-4 lg:mx-0 h-24 mt-6">
+        <div class="mx-4 lg:mx-0 h-16 my-6">
             {#if submissionCorrectness === SubmissionStatus.Correct}
             <div class="bg-green-600 dark:bg-green-800 text-white p-4 rounded text-xl flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
@@ -93,6 +99,10 @@
             </div>
             {/if}
         </div>
+
+        <div class="block lg:hidden w-full p-4 text-center">
+            <HowToPlay />
+          </div>
     </div>
 </main>
 
