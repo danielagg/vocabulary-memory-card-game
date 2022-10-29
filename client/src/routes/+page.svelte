@@ -79,7 +79,7 @@
 
             <div class="mt-10 w-full flex flex-col lg:flex-row justify-between items-center space-y-2 lg:space-y-0">
                 <input bind:this={userInputControl} bind:value={submission} on:keyup={onKeyUp} class="w-full p-4 outline-0 bg-gray-100 border-2 lg:border-r-0 border-gray-200 dark:bg-gray-400 dark:border-gray-400 rounded-lg lg:rounded-xl lg:rounded-br-none lg:rounded-tr-none placeholder-gray-300 dark:text-gray-900 dark:placeholder:text-gray-500" placeholder="Answer" type="text" />
-                <button on:click={onSubmit} class="w-full lg:w-fit bg-gray-700 dark:bg-gray-900 border-2 border-gray-700 dark:border-gray-900 hover:bg-sky-500 hover:border-sky-500 text-gray-100 cursor-pointer py-4 px-16 font-bold rounded-lg lg:rounded-tl-none lg:rounded-bl-none">Submit</button>
+                <button on:click={onSubmit} class="w-full lg:w-fit bg-gray-700 dark:bg-gray-900 border-2 border-gray-700 dark:border-gray-900 hover:bg-sky-500 hover:border-sky-500 dark:hover:bg-sky-700 dark:hover:border-sky-700 text-gray-100 cursor-pointer py-4 px-16 font-bold rounded-lg lg:rounded-tl-none lg:rounded-bl-none">Submit</button>
             </div>
         </div>
 
