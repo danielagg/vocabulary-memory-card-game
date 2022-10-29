@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
-//@CrossOrigin(origins = List.of("http://localhost:5173", "http://localhost:5173"))
 public class VocabularyMemoryCardGameBackendApplication {
 
 	public static void main(String[] args) {
@@ -42,5 +41,4 @@ public class VocabularyMemoryCardGameBackendApplication {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-
 }
