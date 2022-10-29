@@ -2,6 +2,7 @@ package com.vocabularymemorycardgamebackend.vocabularymemorycardgamebackend;
 
 import com.vocabularymemorycardgamebackend.vocabularymemorycardgamebackend.utils.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +62,11 @@ public class FlashcardController {
         try {
             allWords = fileReader.ReadWords();
             var isMatch= allWords.stream().anyMatch(x -> x.equals(submission));
-            return new ResponseEntity(isMatch ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+
+            if(isMatch) return new ResponseEntity(HttpStatus.OK);
+
+            var correctAnswer = allWords.stream().filter(x -> x.getSpanish().equals(submission.getSpanish())).findFirst().orElseThrow();
+            return new ResponseEntity(correctAnswer.getEnglish(), HttpStatus.BAD_REQUEST);
         }
         catch(Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
