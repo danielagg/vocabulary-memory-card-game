@@ -1,15 +1,16 @@
 <script lang="ts">
-import { PUBLIC_BACKEND_BASE_URL as BACKEND_BASE_URL } from '$env/static/public';
-import axios, {AxiosError} from 'axios';
-	import { onMount } from 'svelte';
-import type {PageData} from './$types'
-	import { fetchNextWord } from './+page';
-import  {SubmissionStatus} from './types'
+    import { PUBLIC_BACKEND_BASE_URL as BACKEND_BASE_URL } from '$env/static/public';
+    import axios, {AxiosError} from 'axios';
+    import { onMount } from 'svelte';
+    import type {PageData} from './$types'
+    import { fetchNextWord } from './+page';
+    import  {SubmissionStatus} from './types'
+    import Score from './score.component.svelte';
+    import {increaseScore, resetScore} from './store'
 
     export let data: PageData;
 
     let userInputControl: HTMLElement | null = null;
-    let score = 0;
     let submission = '';
     let submissionCorrectness = SubmissionStatus.Undetermined;
     let correctAnswer = { spanish: '', english: ''}
@@ -36,7 +37,7 @@ import  {SubmissionStatus} from './types'
                     correctAnswer = { spanish: responseData.spanish.word, english: responseData.english.word }
                     submission = '';
                     submissionCorrectness = SubmissionStatus.Incorrect;
-                    score = 0;
+                    resetScore();
 
                     data = await fetchNextWord();
                     userInputControl?.focus(); 
@@ -48,7 +49,7 @@ import  {SubmissionStatus} from './types'
             correctAnswer = { spanish: result.data.spanish.word, english: result.data.english.word }
             submission = '';
             submissionCorrectness = SubmissionStatus.Correct;
-            score += 1;
+            increaseScore();
 
             data = await fetchNextWord();
             userInputControl?.focus(); 
@@ -60,10 +61,7 @@ import  {SubmissionStatus} from './types'
 <main class="min-h-screen w-full bg-gray-100 text-gray-700 flex justify-center lg:items-center">
     <div class="w-full lg:w-1/2 flex flex-col">
 
-        <div class="lg:self-end flex flex-col items-center lg:items-end mt-8 lg:mt-0">
-            <h2 class="text-5xl font-bold">{score}</h2>
-            <p class="text-sm uppercase">Score</p>
-        </div>
+        <Score />
         
         <div class="mt-8 lg:mt-12 mx-4 lg:mx-0 bg-gray-50 rounded shadow p-12 flex flex-col items-center justify-center">
             <h1 class="text-5xl break-all lg:text-7xl font-bold my-12">{@html data.word}</h1>
