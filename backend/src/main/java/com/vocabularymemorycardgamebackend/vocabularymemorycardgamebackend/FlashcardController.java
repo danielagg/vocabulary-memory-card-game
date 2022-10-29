@@ -62,11 +62,8 @@ public class FlashcardController {
         try {
             allWords = fileReader.ReadWords();
             var isMatch= allWords.stream().anyMatch(x -> x.equals(submission));
-
-            if(isMatch) return new ResponseEntity(HttpStatus.OK);
-
             var correctAnswer = allWords.stream().filter(x -> x.getSpanish().equals(submission.getSpanish())).findFirst().orElseThrow();
-            return new ResponseEntity(correctAnswer.getEnglish(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(correctAnswer, isMatch ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
         }
         catch(Exception e) {
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
