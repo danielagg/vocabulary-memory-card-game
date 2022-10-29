@@ -1,7 +1,7 @@
 <script lang="ts">
     import { score } from './store'
 
-    let scoreValue;
+    let scoreValue: number;
 	score.subscribe(x => scoreValue = x);
 
 </script>
