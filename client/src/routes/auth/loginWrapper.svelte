@@ -1,7 +1,7 @@
 <script lang="ts">
     import { browser } from '$app/environment';
     import jwt_decode from "jwt-decode";
-	import GoogleLogin from './googleLogin.component.svelte';
+	import GoogleLogin from './googleLogin.svelte';
 
     let loginButtonVisible = false;
 

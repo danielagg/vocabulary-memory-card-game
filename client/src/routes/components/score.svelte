@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { score } from './store'
+    import { score } from '../../store/store'
 
     let scoreValue: number;
 	score.subscribe(x => scoreValue = x);

@@ -5,12 +5,12 @@
     import type {PageData} from './$types'
     import { fetchNextWord } from './+page';
     import  {SubmissionStatus} from './types'
-    import Score from './score.component.svelte';
-    import {increaseScore, resetScore} from './store'
-	import HowToPlay from './howToPlay.component.svelte';
-	import Copyright from './copyright.component.svelte';
-	import LanguageSelector from './languageSelector.component.svelte';
-	import Login from './login.component.svelte';
+    import Score from './components/score.svelte'
+    import {increaseScore, resetScore} from '../store/store'
+	import HowToPlay from './components/howToPlay.svelte';
+	import Copyright from './components/copyright.svelte';
+	import LanguageSelector from './components/languageSelector.svelte';
+	import Login from './auth/loginWrapper.svelte'
 
     export let data: PageData;
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-	  import Spain from './flags/spain.svelte'
-    import Ukrainian from './flags/ukraine.svelte'
-    import Hungarian from './flags/hungary.svelte'
-	  import { isLanguageSelectorEnabled } from './store';
+	  import Spain from '../flags/spain.svelte'
+    import Ukrainian from '../flags/ukraine.svelte'
+    import Hungarian from '../flags/hungary.svelte'
+	  import { isLanguageSelectorEnabled } from '../../store/store'
 
     let hidden = true;
     let enabled: boolean;
