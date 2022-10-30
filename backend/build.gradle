@@ -19,12 +19,11 @@ repositories {
 }
 
 dependencies {
-	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation 'commons-io:commons-io:2.11.0'
-	// https://mvnrepository.com/artifact/org.json/json
 	implementation 'org.json:json:20220924'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter-security"
+	implementation "org.springframework.boot:spring-boot-starter-oauth2-client"
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

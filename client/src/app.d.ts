@@ -7,3 +7,7 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+
+declare interface Window {
+	onLogin: (response: any) => void;
+}
