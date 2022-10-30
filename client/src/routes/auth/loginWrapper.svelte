@@ -1,14 +1,19 @@
 <script lang="ts">
     import { browser } from '$app/environment';
     import jwt_decode from "jwt-decode";
+	import { onUserSignedIn, authenticatedUser } from '../../store/store';
+	import type { AuthenticatedUser } from '../types';
 	import GoogleLogin from './googleLogin.svelte';
+	import GoogleLogout from './googleLogout.svelte';
 
     let loginButtonVisible = false;
-
+    let user: AuthenticatedUser | null = null;
+    authenticatedUser.subscribe(x => user = x);
+    
     if (browser) {
         window.onLogin = (response: any) => {
-            const responsePayload = jwt_decode(response.credential);
-            console.log(responsePayload)
+            const responsePayload = jwt_decode(response.credential) as AuthenticatedUser;
+            onUserSignedIn(responsePayload);
         }
 
         // Google expects "onLogin" to be defined on "window"
@@ -23,8 +28,19 @@
     }
 </script>
 
-<div class="h-10">
-    {#if loginButtonVisible}
+<div class="h-10 flex items-center">
+    {#if loginButtonVisible && !user}
         <GoogleLogin />
+    {/if}
+
+    {#if user}
+        <div class="text-gray-200 flex items-center space-x-2">
+            <img src={user.picture} alt={`Avatar of ${user.name}`} class="h-8 w-8 rounded-full" />
+            <div>{user.given_name}</div>
+
+            <div class="pl-6">
+                <GoogleLogout />
+            </div>
+        </div>
     {/if}
 </div>
